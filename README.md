@@ -127,9 +127,9 @@ pnpm add @your-username/atomic
     </div>
 
     <script type="module">
-      import { createAtomic } from "@your-username/atomic";
+      import { createAtom } from "@your-username/atomic";
 
-      const atom = createAtomic({
+      const atom = createAtom({
         title: "Hello Atomic!",
         count: 0,
       });
@@ -178,9 +178,9 @@ pnpm add @your-username/atomic
     </div>
 
     <script type="module">
-      import { createAtomic } from "@your-username/atomic";
+      import { createAtom } from "@your-username/atomic";
 
-      const atom = createAtomic({
+      const atom = createAtom({
         users: [
           { name: "John Doe", email: "john@example.com" },
           { name: "Jane Smith", email: "jane@example.com" },
@@ -210,7 +210,7 @@ pnpm add @your-username/atomic
 
 ## 📚 API Reference
 
-### `createAtomic(initialState)`
+### `createAtom(initialState)`
 
 Creates a new atom instance with the given initial state.
 
@@ -221,7 +221,7 @@ Creates a new atom instance with the given initial state.
 **Returns:** An Atomic instance
 
 ```javascript
-const atom = createAtomic({
+const atom = createAtom({
   count: 0,
   message: "Hello World",
   items: [],
@@ -416,7 +416,7 @@ Atomic includes comprehensive TypeScript definitions for type-safe development.
 ### Basic Usage
 
 ```typescript
-import { createAtomic, AtomicState } from "@your-username/atomic";
+import { createAtom, AtomState } from "@your-username/atomic";
 
 interface AppState {
   count: number;
@@ -424,7 +424,7 @@ interface AppState {
   users: Array<{ id: number; name: string; email: string }>;
 }
 
-const atom = createAtomic<AppState>({
+const atom = createAtom<AppState>({
   count: 0,
   message: "Hello",
   users: [],
@@ -443,7 +443,7 @@ atom.setState({ count: "hello" }); // ❌ TypeScript error
 ### Advanced TypeScript Usage
 
 ```typescript
-import { createAtomic, AtomicSubscriber } from "@your-username/atomic";
+import { createAtom, AtomSubscriber } from "@your-username/atomic";
 
 interface Todo {
   id: number;
@@ -457,14 +457,14 @@ interface TodoState {
   newTodo: string;
 }
 
-const atom = createAtomic<TodoState>({
+const atom = createAtom<TodoState>({
   todos: [],
   filter: "all",
   newTodo: "",
 });
 
 // Type-safe subscriber
-const handleStateChange: AtomicSubscriber<TodoState> = (state) => {
+const handleStateChange: AtomSubscriber<TodoState> = (state) => {
   console.log(`Filter: ${state.filter}, Todos: ${state.todos.length}`);
 };
 
@@ -476,9 +476,9 @@ atom.subscribe(handleStateChange);
 ### Todo Application
 
 ```javascript
-import { createAtomic } from "@your-username/atomic";
+import { createAtom } from "@your-username/atomic";
 
-const atom = createAtomic({
+const atom = createAtom({
   todos: [],
   newTodo: "",
   filter: "all", // 'all', 'active', 'completed'
@@ -519,9 +519,9 @@ document.getElementById("todo-list").addEventListener("click", (e) => {
 ### Shopping Cart
 
 ```javascript
-import { createAtomic } from "@your-username/atomic";
+import { createAtom } from "@your-username/atomic";
 
-const atom = createAtomic({
+const atom = createAtom({
   items: [
     { id: 1, name: "Laptop", price: 999, quantity: 1 },
     { id: 2, name: "Mouse", price: 29, quantity: 2 },
@@ -553,9 +553,9 @@ atom.subscribe((state) => {
 ### Form Validation
 
 ```javascript
-import { createAtomic } from "@your-username/atomic";
+import { createAtom } from "@your-username/atomic";
 
-const atom = createAtomic({
+const atom = createAtom({
   form: {
     name: "",
     email: "",

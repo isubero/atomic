@@ -1,26 +1,30 @@
 export type AtomState = Record<string, any>;
-export type AtomSubscriber = (state: AtomState) => void;
+export type AtomSubscriber<T extends AtomState = AtomState> = (
+  state: T
+) => void;
 
-export interface Atom {
-  readonly state: AtomState;
-  getState(): AtomState;
-  setState(newState: Partial<AtomState>): void;
+export interface Atom<T extends AtomState = AtomState> {
+  readonly state: T;
+  getState(): T;
+  setState(newState: Partial<T>): void;
   attach(element: HTMLElement): void;
   detach(element: HTMLElement): void;
   cleanup(): void;
-  subscribe(callback: AtomSubscriber): () => void;
-  unsubscribe(callback: AtomSubscriber): void;
+  subscribe(callback: AtomSubscriber<T>): () => void;
+  unsubscribe(callback: AtomSubscriber<T>): void;
 }
 
-export function createAtom(initialState: AtomState): Atom {
+export function createAtom<T extends AtomState = AtomState>(
+  initialState: T
+): Atom<T> {
   let state = { ...initialState };
   const elements: HTMLElement[] = [];
-  const subscribers: AtomSubscriber[] = [];
+  const subscribers: AtomSubscriber<T>[] = [];
   const subscriberIds = new Map<Function, string>();
   let nextId = 0;
 
   // Create a read-only proxy for the state
-  const createReadOnlyState = (stateObj: AtomState) => {
+  const createReadOnlyState = (stateObj: T) => {
     return new Proxy(stateObj, {
       get(target, prop) {
         const value = target[prop as keyof typeof target];
@@ -114,7 +118,7 @@ export function createAtom(initialState: AtomState): Atom {
     element.removeAttribute("data-x-for-processed");
 
     // Create new elements for each array item
-    array.forEach((item, index) => {
+    array.forEach((item: any, index: number) => {
       const clone = template.content.cloneNode(true) as DocumentFragment;
 
       // Process the cloned content for x-text directives
@@ -207,7 +211,7 @@ export function createAtom(initialState: AtomState): Atom {
       return { ...state };
     },
 
-    setState: (newState: Partial<AtomState>) => {
+    setState: (newState: Partial<T>) => {
       state = { ...state, ...newState };
       updateElements();
       subscribers.forEach((callback) => callback({ ...state }));
@@ -243,7 +247,7 @@ export function createAtom(initialState: AtomState): Atom {
       );
     },
 
-    subscribe: (callback: AtomSubscriber) => {
+    subscribe: (callback: AtomSubscriber<T>) => {
       const id = `sub_${nextId++}`;
       subscribers.push(callback);
       subscriberIds.set(callback, id);
@@ -260,7 +264,7 @@ export function createAtom(initialState: AtomState): Atom {
       };
     },
 
-    unsubscribe: (callback: AtomSubscriber) => {
+    unsubscribe: (callback: AtomSubscriber<T>) => {
       const index = subscribers.indexOf(callback);
       if (index > -1) {
         subscribers.splice(index, 1);

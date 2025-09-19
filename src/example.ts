@@ -1,6 +1,11 @@
 import { createAtom } from "./atom";
 
-const atom = createAtom({
+type StateShape = {
+  count: number;
+  users: { id: number; name: string; email: string }[];
+};
+
+const atom = createAtom<StateShape>({
   count: 0,
   users: [
     { id: 1, name: "John", email: "john@example.com" },
