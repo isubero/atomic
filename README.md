@@ -4,13 +4,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 
-A lightweight, reactive state management library with Vue-like directives for DOM manipulation. Atomic provides a simple and intuitive way to create reactive user interfaces without the complexity of larger frameworks.
+A lightweight, reactive state management library with simple directives for DOM manipulation. Atomic provides a simple and intuitive way to create reactive user interfaces without the complexity of larger frameworks.
 
 ## ✨ Features
 
 - 🚀 **Lightweight**: Minimal bundle size with zero dependencies
 - ⚡ **Reactive**: Automatic DOM updates when state changes
-- 🎯 **Vue-like Directives**: Familiar `x-text` and `x-for` directives
+- 🎯 **Alpine and Vue-like Directives**: Familiar `x-text` and `x-for` directives
 - 📦 **TypeScript**: Full TypeScript support with comprehensive type definitions
 - 🔧 **Simple API**: Easy to learn and use with minimal boilerplate
 - 🌐 **Framework Agnostic**: Works with any HTML/JavaScript project
