@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Atomic Package Test</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 x-text="title"></h1>
+      <p>Count: <span x-text="count"></span></p>
+      <button id="increment">Increment</button>
+      <button id="reset">Reset</button>
+
+      <h3>Users:</h3>
+      <div x-for="user in users">
+        <template>
+          <div>
+            <span x-text="user.name"></span> - <span x-text="user.email"></span>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <script type="module">
+      import { createAtom } from "./dist/index.js";
+
+      const atom = createAtom({
+        title: "Hello Atomic Package!",
+        count: 0,
+        users: [
+          { name: "John", email: "john@example.com" },
+          { name: "Jane", email: "jane@example.com" },
+        ],
+      });
+
+      // Attach the app element
+      atom.attach(document.getElementById("app"));
+
+      // Add event listeners
+      document.getElementById("increment").addEventListener("click", () => {
+        atom.setState({ count: atom.state.count + 1 });
+      });
+
+      document.getElementById("reset").addEventListener("click", () => {
+        atom.setState({ count: 0 });
+      });
+
+      // Subscribe to state changes
+      atom.subscribe((state) => {
+        console.log("State changed:", state);
+      });
+    </script>
+  </body>
+</html>

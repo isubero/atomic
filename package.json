@@ -1,0 +1,51 @@
+{
+  "name": "@your-username/atomic",
+  "version": "1.0.0",
+  "description": "A lightweight reactive state management library with Vue-like directives",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --declaration --outDir dist && vite build --mode library && npm run clean:dist && npm run build:versioned",
+    "clean:dist": "rm -f dist/atom.* dist/example.* dist/vite.svg",
+    "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
+    "build:versioned": "cp dist/index.js dist/index.v1.0.0.js && cp dist/index.umd.js dist/index.v1.0.0.umd.js",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "reactive",
+    "state-management",
+    "dom",
+    "directives",
+    "vue-like",
+    "typescript"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/atomic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/atomic/issues"
+  },
+  "homepage": "https://github.com/your-username/atomic#readme",
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^7.1.6"
+  }
+}

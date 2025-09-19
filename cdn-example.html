@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atomic CDN Example</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      .btn:hover {
+        background: #0056b3;
+      }
+      .btn-secondary {
+        background: #6c757d;
+      }
+      .btn-secondary:hover {
+        background: #545b62;
+      }
+      .counter {
+        font-size: 24px;
+        font-weight: bold;
+        color: #007bff;
+      }
+      .user-item {
+        background: #f8f9fa;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .user-info {
+        flex: 1;
+      }
+      .user-name {
+        font-weight: bold;
+      }
+      .user-email {
+        color: #666;
+        font-size: 0.9em;
+      }
+      .remove-btn {
+        background: #dc3545;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      .remove-btn:hover {
+        background: #c82333;
+      }
+      .form-group {
+        margin: 10px 0;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Counter Demo -->
+      <div class="card">
+        <h2>Counter Demo</h2>
+        <p>Count: <span class="counter" x-text="count">0</span></p>
+        <button class="btn" id="increment">Increment</button>
+        <button class="btn btn-secondary" id="decrement">Decrement</button>
+        <button class="btn btn-secondary" id="reset">Reset</button>
+      </div>
+
+      <!-- Users List Demo -->
+      <div class="card">
+        <h2>Users List</h2>
+
+        <!-- Add User Form -->
+        <form id="userForm">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <button type="submit" class="btn">Add User</button>
+          <button type="button" class="btn btn-secondary" id="clearUsers">
+            Clear All
+          </button>
+        </form>
+
+        <!-- Users List -->
+        <div x-for="user in users">
+          <template>
+            <div class="user-item">
+              <div class="user-info">
+                <div class="user-name" x-text="user.name"></div>
+                <div class="user-email" x-text="user.email"></div>
+              </div>
+              <button class="remove-btn" data-user-id="user.id">Remove</button>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <!-- CDN Usage Examples -->
+    <!-- 
+    Option 1: ES Modules (Modern browsers)
+    <script type="module">
+        import { createAtom } from 'https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.js';
+        // Your code here
+    </script>
+    
+    Option 2: UMD (Broader compatibility)
+    <script src="https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.umd.js"></script>
+    <script>
+        // Access via global Atomic variable
+        const { createAtom } = Atomic;
+        // Your code here
+    </script>
+    -->
+
+    <!-- For this example, we'll use a local file -->
+    <script type="module">
+      // In a real CDN scenario, this would be:
+      // import { createAtom } from 'https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.js';
+
+      // For this demo, importing from local dist
+      import { createAtom } from "./dist/index.js";
+
+      // Initialize Atomic
+      const atom = createAtom({
+        count: 0,
+        users: [
+          { id: 1, name: "John Doe", email: "john@example.com" },
+          { id: 2, name: "Jane Smith", email: "jane@example.com" },
+        ],
+      });
+
+      // Attach to the app element for reactive updates
+      atom.attach(document.getElementById("app"));
+
+      // Counter functionality
+      document.getElementById("increment").addEventListener("click", () => {
+        atom.setState({ count: atom.state.count + 1 });
+      });
+
+      document.getElementById("decrement").addEventListener("click", () => {
+        atom.setState({ count: atom.state.count - 1 });
+      });
+
+      document.getElementById("reset").addEventListener("click", () => {
+        atom.setState({ count: 0 });
+      });
+
+      // User management
+      document.getElementById("userForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const newUser = {
+          id: Date.now() + Math.random(),
+          name: formData.get("name"),
+          email: formData.get("email"),
+        };
+
+        atom.setState({
+          users: [...atom.state.users, newUser],
+        });
+
+        e.target.reset();
+      });
+
+      document.getElementById("clearUsers").addEventListener("click", () => {
+        atom.setState({ users: [] });
+      });
+
+      // Event delegation for remove buttons
+      document.getElementById("app").addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-btn")) {
+          const userId = parseFloat(e.target.getAttribute("data-user-id"));
+          atom.setState({
+            users: atom.state.users.filter((user) => user.id !== userId),
+          });
+        }
+      });
+
+      // Subscribe to state changes for debugging
+      atom.subscribe((state) => {
+        console.log("State updated:", state);
+      });
+    </script>
+  </body>
+</html>
