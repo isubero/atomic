@@ -10,7 +10,7 @@ A lightweight, reactive state management library with simple directives for DOM 
 
 - 🚀 **Lightweight**: Minimal bundle size with zero dependencies
 - ⚡ **Reactive**: Automatic DOM updates when state changes
-- 🎯 **Alpine and Vue-like Directives**: Familiar `x-text` and `x-for` directives
+- 🎯 **Alpine-like Directives**: Familiar `x-text` and `x-for` directives
 - 📦 **TypeScript**: Full TypeScript support with comprehensive type definitions
 - 🔧 **Simple API**: Easy to learn and use with minimal boilerplate
 - 🌐 **Framework Agnostic**: Works with any HTML/JavaScript project
@@ -348,7 +348,7 @@ atom.cleanup();
 
 ## 🎯 Directives
 
-Atomic provides Vue-like directives for declarative DOM manipulation.
+Atomic provides Alpine-like directives for declarative DOM manipulation.
 
 ### `x-text`
 
@@ -667,9 +667,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Inspired by Vue.js reactive system
-- Built with modern JavaScript and TypeScript
-- Thanks to all contributors and users
+- Inspired by Alpine simplicity
+- Inpired by React state management
 
 ## 📞 Support
 
