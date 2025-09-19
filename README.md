@@ -1,6 +1,6 @@
 # Atomic
 
-[![npm version](https://img.shields.io/npm/v/@your-username/atomic.svg)](https://www.npmjs.com/package/@your-username/atomic)
+[![npm version](https://img.shields.io/npm/v/@isubero/atomic.svg)](https://www.npmjs.com/package/@isubero/atomic)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-%230074c1.svg)](http://www.typescriptlang.org/)
 
@@ -26,7 +26,7 @@ A lightweight, reactive state management library with simple directives for DOM 
 
 ```html
 <script type="module">
-  import { createAtom } from "https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.js";
+  import { createAtom } from "https://cdn.jsdelivr.net/npm/@isubero/atomic@latest/dist/index.js";
 
   // Your code here
   const atom = createAtom({ count: 0 });
@@ -36,7 +36,7 @@ A lightweight, reactive state management library with simple directives for DOM 
 #### UMD (Broader Browser Compatibility)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@isubero/atomic@latest/dist/index.umd.js"></script>
 <script>
   const { createAtom } = Atomic;
 
@@ -47,25 +47,25 @@ A lightweight, reactive state management library with simple directives for DOM 
 
 #### Alternative CDNs
 
-- **unpkg**: `https://unpkg.com/@your-username/atomic@latest/dist/index.js`
-- **skypack**: `https://cdn.skypack.dev/@your-username/atomic`
+- **unpkg**: `https://unpkg.com/@isubero/atomic@latest/dist/index.js`
+- **skypack**: `https://cdn.skypack.dev/@isubero/atomic`
 
 ### Package Managers
 
 ```bash
-npm install @your-username/atomic
+npm install @isubero/atomic
 ```
 
 Or with yarn:
 
 ```bash
-yarn add @your-username/atomic
+yarn add @isubero/atomic
 ```
 
 Or with pnpm:
 
 ```bash
-pnpm add @your-username/atomic
+pnpm add @isubero/atomic
 ```
 
 ## 🚀 Quick Start
@@ -87,7 +87,7 @@ pnpm add @your-username/atomic
     </div>
 
     <script type="module">
-      import { createAtom } from "https://cdn.jsdelivr.net/npm/@your-username/atomic@latest/dist/index.js";
+      import { createAtom } from "https://cdn.jsdelivr.net/npm/@isubero/atomic@latest/dist/index.js";
 
       const atom = createAtom({
         title: "Hello Atomic!",
@@ -127,7 +127,7 @@ pnpm add @your-username/atomic
     </div>
 
     <script type="module">
-      import { createAtom } from "@your-username/atomic";
+      import { createAtom } from "@isubero/atomic";
 
       const atom = createAtom({
         title: "Hello Atomic!",
@@ -178,7 +178,7 @@ pnpm add @your-username/atomic
     </div>
 
     <script type="module">
-      import { createAtom } from "@your-username/atomic";
+      import { createAtom } from "@isubero/atomic";
 
       const atom = createAtom({
         users: [
@@ -416,7 +416,7 @@ Atomic includes comprehensive TypeScript definitions for type-safe development.
 ### Basic Usage
 
 ```typescript
-import { createAtom, AtomState } from "@your-username/atomic";
+import { createAtom, AtomState } from "@isubero/atomic";
 
 interface AppState {
   count: number;
@@ -443,7 +443,7 @@ atom.setState({ count: "hello" }); // ❌ TypeScript error
 ### Advanced TypeScript Usage
 
 ```typescript
-import { createAtom, AtomSubscriber } from "@your-username/atomic";
+import { createAtom, AtomSubscriber } from "@isubero/atomic";
 
 interface Todo {
   id: number;
@@ -476,7 +476,7 @@ atom.subscribe(handleStateChange);
 ### Todo Application
 
 ```javascript
-import { createAtom } from "@your-username/atomic";
+import { createAtom } from "@isubero/atomic";
 
 const atom = createAtom({
   todos: [],
@@ -519,7 +519,7 @@ document.getElementById("todo-list").addEventListener("click", (e) => {
 ### Shopping Cart
 
 ```javascript
-import { createAtom } from "@your-username/atomic";
+import { createAtom } from "@isubero/atomic";
 
 const atom = createAtom({
   items: [
@@ -553,7 +553,7 @@ atom.subscribe((state) => {
 ### Form Validation
 
 ```javascript
-import { createAtom } from "@your-username/atomic";
+import { createAtom } from "@isubero/atomic";
 
 const atom = createAtom({
   form: {
@@ -615,7 +615,7 @@ Contributions are welcome!
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/atomic.git
+git clone https://github.com/isubero/atomic.git
 
 # Install dependencies
 npm install
@@ -672,9 +672,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 📖 [Documentation](https://github.com/your-username/atomic#readme)
-- 🐛 [Issue Tracker](https://github.com/your-username/atomic/issues)
-- 💬 [Discussions](https://github.com/your-username/atomic/discussions)
+- 📖 [Documentation](https://github.com/isubero/atomic#readme)
+- 🐛 [Issue Tracker](https://github.com/isubero/atomic/issues)
+- 💬 [Discussions](https://github.com/isubero/atomic/discussions)
 
 ---
 
