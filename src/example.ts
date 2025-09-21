@@ -1,8 +1,15 @@
 import { createAtom } from "./atom";
+import { toast } from "./toast";
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
 
 type StateShape = {
   count: number;
-  users: { id: number; name: string; email: string }[];
+  users: User[];
 };
 
 const atom = createAtom<StateShape>({
@@ -39,12 +46,14 @@ const detachButton = document.getElementById("detachButton") as HTMLElement;
 
 detachButton.addEventListener("click", () => {
   atom.disconnect(totalDifferentElement);
+  toast.warning("Element detached from state");
 });
 
 const attachButton = document.getElementById("attachButton") as HTMLElement;
 
 attachButton.addEventListener("click", () => {
   atom.connect(totalDifferentElement);
+  toast.success("Element reattached to state");
 });
 
 atom.subscribe((state) => {
@@ -69,7 +78,7 @@ userForm.addEventListener("submit", (event) => {
   const email = formData.get("email") as string;
 
   if (name && email) {
-    const newUser = {
+    const newUser: User = {
       id: Date.now() + Math.random(),
       name: name.trim(),
       email: email.trim(),
@@ -96,7 +105,7 @@ userList.addEventListener("click", (event) => {
     if (userId) {
       const id = parseFloat(userId);
       atom.setState({
-        users: atom.state.users.filter((user: any) => user.id !== id),
+        users: atom.state.users.filter((user: User) => user.id !== id),
       });
     }
   }
