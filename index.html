@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/style.css" />
-    <title>Vite + TS</title>
+    <title>Atomic Demo</title>
   </head>
   <body>
     <div id="app">
@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
           <div class="buttons">
-            <button id="myButton" class="btn btn-primary">
+            <button id="counterButton" class="btn btn-primary">
               Count &nbsp;<span x-text="count">0</span>
             </button>
             <button id="resetButton" class="btn btn-secondary">Reset</button>
@@ -35,6 +35,9 @@
           </p>
           <button id="detachButton" class="btn btn-warning">
             Detach Element
+          </button>
+          <button id="attachButton" class="btn btn-success">
+            Attach Element
           </button>
         </div>
       </div>

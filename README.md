@@ -95,7 +95,7 @@ pnpm add @isubero/atomic
       });
 
       // Attach the app element for reactive updates
-      atom.attach(document.getElementById("app"));
+      atom.connect(document.getElementById("app"));
 
       // Add event listeners
       document.getElementById("increment").addEventListener("click", () => {
@@ -135,7 +135,7 @@ pnpm add @isubero/atomic
       });
 
       // Attach the app element for reactive updates
-      atom.attach(document.getElementById("app"));
+      atom.connect(document.getElementById("app"));
 
       // Add event listeners
       document.getElementById("increment").addEventListener("click", () => {
@@ -187,7 +187,7 @@ pnpm add @isubero/atomic
         ],
       });
 
-      atom.attach(document.getElementById("app"));
+      atom.connect(document.getElementById("app"));
 
       document.getElementById("userForm").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -278,30 +278,30 @@ atom.setState({
 });
 ```
 
-##### `atom.attach(element)`
+##### `atom.connect(element)`
 
-Attaches an HTML element to the atom for reactive DOM updates.
+Connects an HTML element to the atom for reactive DOM updates.
 
 **Parameters:**
 
-- `element` (HTMLElement): The element to attach
+- `element` (HTMLElement): The element to connect
 
 ```javascript
 const appElement = document.getElementById("app");
-atom.attach(appElement);
+atom.connect(appElement);
 ```
 
-##### `atom.detach(element)`
+##### `atom.disconnect(element)`
 
-Detaches an HTML element from the atom, stopping reactive updates for that element.
+Disconnects an HTML element from the atom, stopping reactive updates for that element.
 
 **Parameters:**
 
-- `element` (HTMLElement): The element to detach
+- `element` (HTMLElement): The element to disconnect
 
 ```javascript
 const element = document.getElementById("myElement");
-atom.detach(element);
+atom.disconnect(element);
 ```
 
 ##### `atom.subscribe(callback)`

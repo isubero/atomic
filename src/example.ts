@@ -14,9 +14,9 @@ const atom = createAtom<StateShape>({
   ],
 });
 
-const button = document.getElementById("myButton") as HTMLElement;
+const button = document.getElementById("counterButton") as HTMLElement;
 
-atom.attach(button);
+atom.connect(button);
 
 button.addEventListener("click", () => {
   atom.setState({ count: atom.state.count + 1 });
@@ -28,16 +28,23 @@ resetButton.addEventListener("click", () => {
   atom.setState({ count: 0 });
 });
 
-atom.attach(document.getElementById("totalDifferentElement") as HTMLElement);
+const totalDifferentElement = document.getElementById(
+  "totalDifferentElement"
+) as HTMLElement;
+
+atom.connect(totalDifferentElement);
 
 // The detach functionality is now demonstrated with the detachButton
 const detachButton = document.getElementById("detachButton") as HTMLElement;
 
 detachButton.addEventListener("click", () => {
-  const totalDifferentElement = document.getElementById(
-    "totalDifferentElement"
-  ) as HTMLElement;
-  atom.detach(totalDifferentElement);
+  atom.disconnect(totalDifferentElement);
+});
+
+const attachButton = document.getElementById("attachButton") as HTMLElement;
+
+attachButton.addEventListener("click", () => {
+  atom.connect(totalDifferentElement);
 });
 
 atom.subscribe((state) => {
@@ -46,7 +53,7 @@ atom.subscribe((state) => {
 
 // User List functionality
 const userList = document.getElementById("userList") as HTMLElement;
-atom.attach(userList);
+atom.connect(userList);
 
 const userForm = document.getElementById("userForm") as HTMLFormElement;
 const clearUsersButton = document.getElementById(

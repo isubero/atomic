@@ -7,8 +7,8 @@ export interface Atom<T extends AtomState = AtomState> {
   readonly state: T;
   getState(): T;
   setState(newState: Partial<T>): void;
-  attach(element: HTMLElement): void;
-  detach(element: HTMLElement): void;
+  connect(element: HTMLElement): void;
+  disconnect(element: HTMLElement): void;
   cleanup(): void;
   subscribe(callback: AtomSubscriber<T>): () => void;
   unsubscribe(callback: AtomSubscriber<T>): void;
@@ -218,22 +218,22 @@ export function createAtom<T extends AtomState = AtomState>(
       console.log("[setState]", state);
     },
 
-    attach: (element: HTMLElement) => {
+    connect: (element: HTMLElement) => {
       if (!element) {
-        console.warn("Cannot attach null or undefined element");
+        console.warn("Cannot connect null or undefined element");
         return;
       }
       elements.push(element);
       updateElements();
-      console.log("[attach]", elements);
+      console.log("[connect]", elements);
     },
 
-    detach: (element: HTMLElement) => {
+    disconnect: (element: HTMLElement) => {
       const index = elements.indexOf(element);
       if (index > -1) {
         elements.splice(index, 1);
       }
-      console.log("[detach]", elements);
+      console.log("[disconnect]", elements);
     },
 
     cleanup: () => {
