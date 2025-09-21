@@ -1,6 +1,6 @@
 {
   "name": "@isubero/atomic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight, reactive state management library with simple directives for DOM manipulation.",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,7 +22,7 @@
     "build": "tsc --declaration --outDir dist && vite build --mode library && npm run clean:dist && npm run build:versioned",
     "clean:dist": "rm -f dist/atom.* dist/example.* dist/vite.svg",
     "build:types": "tsc --declaration --emitDeclarationOnly --outDir dist",
-    "build:versioned": "cp dist/index.js dist/index.v1.0.1.js && cp dist/index.umd.cjs dist/index.v1.0.1.umd.cjs",
+    "build:versioned": "cp dist/index.js dist/index.v1.0.2.js && cp dist/index.umd.cjs dist/index.v1.0.2.umd.cjs",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
